@@ -3,6 +3,8 @@ import { h, b, r, e, s, t } from './incoming';
 
 export const Hero = () => {
     const S = s.home;
+    const { state_settings, set_settings } = h.Mother();
+    const [activeSlider, set_activeSlider] = useState<number>(1);
 
     const navlinks = [
         {
@@ -35,10 +37,20 @@ export const Hero = () => {
         buttonText: 'View plans and pricing',
     };
 
+    const ref_scroll = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (state_settings.scroll_to_top === true) {
+            set_settings({
+                scroll_to_top: false,
+            });
+            ref_scroll.current?.scrollIntoView();
+        }
+    }, [set_settings, state_settings.scroll_to_top]);
+
     return (
         <S.Hero>
-            <S.NavArea>
-                <S.LogoArea>Some logo</S.LogoArea>
+            <S.NavArea ref={ref_scroll}>
+                <S.LogoArea>Some logo {activeSlider} </S.LogoArea>
                 <S.Filler />
                 <S.NavTextArea>
                     {navlinks.map((nav, i) => {
@@ -62,9 +74,15 @@ export const Hero = () => {
 
             <S.ThreeDotArea>
                 <S.Filler />
-                <S.Dot />
-                <S.Dot />
-                <S.Dot />
+                <S.DotBackground onClick={() => set_activeSlider(1)} isActive={activeSlider === 1}>
+                    <S.Dot />
+                </S.DotBackground>
+                <S.DotBackground onClick={() => set_activeSlider(2)} isActive={activeSlider === 2}>
+                    <S.Dot />
+                </S.DotBackground>
+                <S.DotBackground onClick={() => set_activeSlider(3)} isActive={activeSlider === 3}>
+                    <S.Dot />
+                </S.DotBackground>
                 <S.Filler />
             </S.ThreeDotArea>
         </S.Hero>
@@ -286,13 +304,144 @@ export const FromTheFounder = () => {
         <S.FromTheFounder>
             <S.Heading>From The Founder</S.Heading>
             <S.Filler bd="red" />
-            <S.Pic1 bgimg={bulk.pic} />
-            <S.Line1>{bulk.title}</S.Line1>
-            <S.Description1>{bulk.description}</S.Description1>
-            <S.Facebook />
-            <S.Twitter />
-            <S.Google />
-            <S.Blogg />
+            <S.NileshHolder>
+                <S.Pic1 bgimg={bulk.pic} />
+                <S.Line1>{bulk.title}</S.Line1>
+            </S.NileshHolder>
+            <S.Description1>"{bulk.description}"</S.Description1>
+            <S.IconHolder>
+                <S.Facebook />
+                <S.Twitter />
+                <S.Google />
+                <S.Blogg />
+            </S.IconHolder>
+            <S.IframeHolder>
+                <iframe src={'https://www.youtube.com/watch?v=yRh-dzrI4Z4'} height="100%" width="100%" title="random" />
+            </S.IframeHolder>
         </S.FromTheFounder>
+    );
+};
+
+export const Testimonials = () => {
+    const S = s.home;
+    const unsplash = 'https://source.unsplash.com/random';
+
+    const cards = [
+        {
+            text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was po`,
+            pic: unsplash,
+            firstName: 'Darshan Odeyar',
+            caption: 'IT professional',
+        },
+        {
+            text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was po`,
+            pic: unsplash,
+            firstName: 'Vidya Raghavan',
+            caption: 'Home maker',
+        },
+        {
+            text: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was po`,
+            pic: unsplash,
+            firstName: 'Darshan Odeyar',
+            caption: 'Doctor',
+        },
+    ];
+
+    return (
+        <S.Testimonials>
+            <S.Heading>Testimonials</S.Heading>
+            <S.Filler bd="red" />
+
+            <S.CardArea>
+                {cards.map((card, i) => {
+                    return (
+                        <S.Card1>
+                            <S.Line1>{card.text}</S.Line1>
+                            <S.UserInfo>
+                                <S.Pic2 bgimg={card.pic} />
+                                <S.Line2>{card.firstName}</S.Line2>
+                                <S.Line3>{card.caption}</S.Line3>
+                            </S.UserInfo>
+                        </S.Card1>
+                    );
+                })}
+            </S.CardArea>
+        </S.Testimonials>
+    );
+};
+
+export const GetInTouch = () => {
+    const S = s.home;
+    return (
+        <S.GetInTouch>
+            {/* <S.Filler /> */}
+            <S.Heading>Have questions on stock market?</S.Heading>
+            <S.Filler />
+            <S.Button>Get in touch</S.Button>
+            {/* <S.Filler /> */}
+        </S.GetInTouch>
+    );
+};
+
+export const Footer = () => {
+    const S = s.home;
+    const unsplash = 'https://source.unsplash.com/random';
+
+    const links = ['About Us', 'Plans and pricing', 'Case studies', 'Free trial'];
+    return (
+        <S.Footer>
+            <S.LogoArea bgimg={unsplash} />
+            {/* CONTACT */}
+            <S.Col1>
+                <S.Heading>Contact</S.Heading>
+                <S.Filler bd="#b89173" />
+                <S.Address>
+                    NAT, St, Gandhi Bazaar, Basavanagudi,
+                    <br />
+                    Bangaluru, Karnataka 560004
+                    <br />
+                    emai: rocket@rockettrades.com
+                    <br />
+                    Phone: +91 990330558
+                    <br />
+                </S.Address>
+                <S.IconHolder>
+                    <S.Facebook />
+                    <S.Google />
+                    <S.Twitter />
+                </S.IconHolder>
+            </S.Col1>
+            {/* QUICK LINKS */}
+            <S.Col2>
+                <S.Heading>Quick Links</S.Heading>
+                <S.Filler bd="#b89173" />
+                <S.Bullets>
+                    {links.map((link, i) => {
+                        return <S.Bullet key={i}>{link}</S.Bullet>;
+                    })}
+                </S.Bullets>
+            </S.Col2>
+
+            <S.Pic1 bgimg={unsplash} />
+        </S.Footer>
+    );
+};
+
+export const Copyright = () => {
+    const S = s.home;
+    const { state_settings, set_settings } = h.Mother();
+    return (
+        <S.Copyright>
+            <S.Col1> © Copyright 2015, RocketTraders</S.Col1>
+            <S.Filler />
+
+            <S.AngleUp
+                onClick={() => {
+                    set_settings({
+                        scroll_to_top: true,
+                    });
+                }}
+            />
+        </S.Copyright>
     );
 };

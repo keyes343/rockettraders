@@ -9,14 +9,45 @@ import { MdPersonOutline } from 'react-icons/md';
 import { GiTie } from 'react-icons/gi';
 import { AiOutlineTags } from 'react-icons/ai';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
-import { FaFacebookF, FaBlogger } from 'react-icons/fa';
+import { FaFacebookF, FaBlogger, FaAngleUp } from 'react-icons/fa';
 import { AiOutlineTwitter, AiOutlineGooglePlus } from 'react-icons/ai';
 
 // icons
-export const Facebook = styled(FaFacebookF)``;
-export const Google = styled(AiOutlineGooglePlus)``;
-export const Twitter = styled(AiOutlineTwitter)``;
-export const Blogg = styled(FaBlogger)``;
+export const AngleUp = styled(FaAngleUp)`
+    cursor: pointer;
+`;
+export const Facebook = styled(FaFacebookF)`
+    font-size: 2rem;
+    background-color: #3b589a;
+    color: white;
+    border-radius: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+`;
+export const Google = styled(AiOutlineGooglePlus)`
+    font-size: 2rem;
+    background-color: #cf412e;
+    color: white;
+    border-radius: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+`;
+export const Twitter = styled(AiOutlineTwitter)`
+    font-size: 2rem;
+    background-color: #2fb1ed;
+    color: white;
+    border-radius: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+`;
+export const Blogg = styled(FaBlogger)`
+    font-size: 2rem;
+    color: white;
+    background-color: #f1921a;
+    border-radius: 50%;
+    padding: 0.3rem;
+    cursor: pointer;
+`;
 
 export const Computer = styled(HiOutlineDesktopComputer)`
     color: inherit;
@@ -57,12 +88,22 @@ export const Hero = styled(Grid)``;
 export const NavArea = styled(Grid)``;
 export const InfoArea = styled(Grid)``;
 export const ThreeDotArea = styled(Grid)``;
-export const Dot = styled(Grid)``;
+export const DotBackground = styled(Grid)<{ isActive?: boolean }>`
+    border: ${(p) => (p.isActive ? '2px solid white' : '')};
+`;
+export const Dot = styled(Grid)<{ isActive?: boolean }>`
+    /* border: ${(p) => (p.isActive ? '2px solid red' : '')}; */
+    /* border: 2px solid red; */
+`;
 export const LogoArea = styled(Grid)``;
 export const NavTextArea = styled(Grid)``;
 export const NavText = styled(Grid)``;
 export const Filler = styled(Grid)``;
-export const Heading = styled(Box)``;
+export const Heading = styled(Box)`
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+`;
 export const Heading2 = styled(Heading)``;
 export const Description1 = styled(Box)``;
 export const Description2 = styled(Box)``;
@@ -81,11 +122,21 @@ export const Pic_left = styled(Pic1)``;
 export const Pic_center = styled(Pic_left)``;
 export const Pic_right = styled(Pic_left)``;
 export const IconHolder = styled(Pic_left)``;
+export const IframeHolder = styled(Grid)``;
+export const NileshHolder = styled(Grid)``;
 
+export const UserInfo = styled(Grid)``;
 export const HeaderCard = styled(Grid)``;
+export const CardArea = styled(Grid)``;
 export const Card1 = styled(HeaderCard)``;
 export const Card2 = styled(Card1)``;
 export const Card3 = styled(Card1)``;
+export const Col1 = styled(Card1)``;
+export const Col2 = styled(Col1)``;
+export const Row1 = styled(Grid)``;
+export const Row2 = styled(Row1)``;
+export const Address = styled(Col1)``;
+
 export const PaginationWrapper = styled(Card1)``;
 export const Pagination = styled(Card1)<{ isOn: boolean }>`
     font-weight: ${(p) => (p.isOn ? 'bold' : 'normal')};
@@ -93,6 +144,8 @@ export const Pagination = styled(Card1)<{ isOn: boolean }>`
     color: ${(p) => (p.isOn ? '' : 'grey')};
     cursor: pointer;
 `;
+export const Bullets = styled(Grid)``;
+export const Bullet = styled(Box)``;
 
 // ----------
 export const Acheivements = styled(Grid)``;
@@ -104,6 +157,10 @@ export const CaseStudyArea = styled(Grid)``;
 export const HowItWorks = styled(Grid)``;
 export const ReadyToInvest = styled(Grid)``;
 export const FromTheFounder = styled(Grid)``;
+export const GetInTouch = styled(Grid)``;
+export const Testimonials = styled(Grid)``;
+export const Footer = styled(Grid)``;
+export const Copyright = styled(Grid)``;
 
 // ------------------------------
 
@@ -141,25 +198,29 @@ export const Home = styled(Grid)`
             ${InfoArea} {
                 grid-area: _InfoArea;
                 padding: 0 3rem;
-                gap: 1rem;
+                gap: 1.5rem;
                 place-items: center start;
                 ${Heading} {
                     font-size: 1.5rem;
+                    width: auto;
+                    text-transform: none;
                 }
                 ${Line1} {
-                    gap: 1rem;
+                    gap: 1.4rem;
                     grid-template-columns: auto 1fr;
                     ${Ticked} {
                         border-radius: 50%;
                         font-size: 1.5rem;
-                        color: red;
+                        color: #ff8686;
+                        border: 1px solid #ff8686;
+                        opacity: 0.7;
                     }
                     ${Text} {
                     }
                 }
                 ${Button} {
                     background-color: #de4e36;
-                    padding: 0.5rem;
+                    padding: 0.5rem 1rem;
                     width: auto;
                 }
             }
@@ -168,12 +229,18 @@ export const Home = styled(Grid)`
                 grid-area: _ThreeDotArea;
                 grid-template-columns: 1fr repeat(3, auto) 1fr;
                 gap: 0.8rem;
-                ${Dot} {
+                // NOTE has props
+                ${DotBackground}{
+                    padding: 3px;
+                    /* border: 2px solid white; */
                     border-radius: 50%;
-                    background-color: white;
-                    border: 2px solid;
-                    width: 1rem;
-                    height: 1rem;
+                    ${Dot} {
+                        border-radius: 50%; 
+                        background-color: white;
+                        width: 0.8rem;
+                        height: 0.8rem;
+                    }
+
                 }
             }
         }
@@ -229,7 +296,7 @@ export const Home = styled(Grid)`
         grid-template-rows: repeat(10, auto);
         gap: 1rem 2rem;
         ${Heading} {
-            grid-area: 1/6/1/8;
+            grid-area: 1/5/1/9;
             text-align: center;
             font-size: 2rem;
         }
@@ -277,6 +344,8 @@ export const Home = styled(Grid)`
                 width: auto;
                 left: 1rem;
                 bottom: 4rem;
+                text-align: left;
+                text-transform: none;
                 z-index: 10;
                 font-size: 1.2rem;
                 /* font-weight: bold; */
@@ -368,7 +437,6 @@ export const Home = styled(Grid)`
                 position: absolute;
                 text-align: start;
                 bottom: 1rem;
-                /* border: 2px solid red; */
                 left: 0.5rem;
                 max-width: 15rem;
             }
@@ -398,7 +466,6 @@ export const Home = styled(Grid)`
         }
         ${PaginationWrapper} {
             grid-area: 3/6/3/8;
-            /* border: 2px solid red; */
             grid-template-columns: repeat(4, auto);
             padding: 0 0 2rem;
             // NOTE - has props
@@ -432,14 +499,14 @@ export const Home = styled(Grid)`
         background-color: #2e2e2e;
         padding: 2rem 0;
         ${Line1} {
-            grid-area: 1/4/2/7;
+            grid-area: 1/3/2/7;
             font-size: 1.5rem;
             color: white;
             place-items: center start;
         }
         ${Line2} {
+            grid-area: 3/3/4/7;
             color: rgba(255, 255, 255, 0.5);
-            grid-area: 3/4/4/7;
             text-transform: none;
             font-size: 1rem;
             padding: 1rem 0;
@@ -450,70 +517,216 @@ export const Home = styled(Grid)`
             color: white;
             text-transform: uppercase;
             width: auto;
-            padding: 0.7rem;
+            padding: 0.7rem 3rem;
         }
     }
     ${FromTheFounder} {
         grid-template-columns: repeat(24, 1fr);
-        grid-template-rows: repeat(6, auto);
+        grid-template-rows: repeat(8, auto);
         padding: 3rem 1rem;
         ${Heading} {
             grid-area: 1/10/1/16;
-            text-align: center;
-            font-size: 1.5rem;
-            text-transform: uppercase;
         }
         ${Filler} {
             grid-area: 2/10/2/16;
             width: 2rem;
-            margin: 1rem 0;
+            margin: 1rem 0 3rem;
         }
-        ${Pic1} {
-            grid-area: 4/2/4/3;
-            height: 4rem;
-            /* width: 4rem; */
-            border-radius: 50%;
-        }
-        ${Line1} {
-            grid-area: 4/3/4/8;
-            place-items: center start;
-            padding: 0 1rem;
-            font-weight: bold;
+        ${NileshHolder} {
+            grid-area: 4/4/4/7;
+            grid-template-columns: auto 1fr;
+            ${Pic1} {
+                height: 4rem;
+                width: 4rem;
+                border-radius: 50%;
+            }
+            ${Line1} {
+                // Nilesh, Stock Market Enthusiast
+                /* grid-area: 4/5/4/9; */
+                place-items: center start;
+                padding: 0 1rem;
+                font-weight: bold;
+            }
         }
         ${Description1} {
+            font-style: italic;
             padding: 1rem 0;
-            grid-area: 5/2/5/6;
+            grid-area: 5/4/5/9;
         }
-        ${Facebook} {
-            grid-area: 6/2/6/3;
-            font-size: 2rem;
-            background-color: #3b589a;
-            color: white;
-            border-radius: 50%;
-            padding: 0.3rem;
-        }
-        ${Twitter} {
-            grid-area: 6/3/6/4;
-            font-size: 2rem;
-            background-color: #2fb1ed;
-            color: white;
-            border-radius: 50%;
-            padding: 0.3rem;
-        }
-        ${Google} {
+        ${IconHolder} {
+            padding: 1rem 0;
+            width: auto;
             grid-area: 6/4/6/5;
-            font-size: 2rem;
-            background-color: #cf412e;
-            color: white;
-            border-radius: 50%;
-            padding: 0.3rem;
+            border-radius: 0;
+            grid-template-columns: repeat(4, auto);
+            gap: 0.5rem;
+            ${Facebook} {
+            }
+            ${Twitter} {
+                /* grid-area: 6/5/6/6; */
+                f
+            }
+            ${Google} {
+                /* grid-area: 6/6/6/7; */
+                
+            }
+            ${Blogg} {
+                /* grid-area: 6/7/6/8; */
+                
+            }
         }
-        ${Blogg} {
-            grid-area: 6/5/6/6;
-            font-size: 2rem;
-            color: white;
-            background-color: #f1921a;
-            border-radius: 50%;
+        ${IframeHolder} {
+            grid-area: 4/13/7/24;
+            height: 100%;
+        }
+    }
+    ${Testimonials} {
+        background-color: #f1f1f1;
+        padding: 4rem;
+        ${Heading} {
+            /* padding: 1rem; */
+        }
+        ${Filler} {
+            width: 2rem;
+            margin: 1rem;
+        }
+        ${CardArea} {
+            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            ${Card1} {
+                padding: 2rem;
+                background-color: white;
+                grid-template-columns: repeat(4, 1fr);
+                ${Line1} {
+                    grid-area: 1/1/1/5;
+                }
+                ${UserInfo} {
+                    grid-area: 2/1/4/5;
+                    padding: 1rem 0;
+                    grid-template-columns: auto 1fr;
+                    gap: 0 1rem;
+                    ${Pic2} {
+                        grid-area: 1/1/3/2;
+                        height: 4rem;
+                        width: 4rem;
+                        border-radius: 50%;
+                    }
+                    ${Line2} {
+                        grid-area: 1/2/1/4;
+                        font-weight: bold;
+                        /* border: 2px solid blue; */
+                        place-items: center start;
+                    }
+                    ${Line3} {
+                        grid-area: 2/2/2/4;
+                        font-weight: normal;
+                        /* border: 2px solid blue; */
+                        /* grid-area: 3/2/3/3; */
+                    }
+                }
+            }
+        }
+    }
+    ${GetInTouch} {
+        background-color: #2fa084;
+        text-transform: uppercase;
+        grid-template-columns: auto 1fr auto;
+        color: white;
+        padding: 2rem 6rem;
+        ${Heading} {
+        }
+        ${Filler} {
+        }
+        ${Button} {
+            background-color: #ffffff;
+            padding: 0.5rem 1.5rem;
+            color: black;
+            font-size: 1.2rem;
+        }
+    }
+    ${Footer} {
+        grid-template-columns: repeat(4, auto);
+        background-color: #2e2e2e;
+        color: white;
+        padding: 3rem 5rem;
+        place-items: start center;
+        ${LogoArea} { 
+            height: 100%;
+        }
+        ${Col1} {
+            place-items: center start;
+            width:auto;
+            gap:1rem;
+            color: rgba(255, 255, 255, 0.6);
+            ${Heading} {
+                color:white;
+                text-align:start;
+            }
+            ${Filler}{
+                width:2rem;
+            }
+            ${Address} {
+                width:auto;
+            }
+            ${IconHolder}{
+                grid-template-columns: repeat(4,auto);
+                width:auto;
+                gap:0.8rem;
+                ${Facebook}{
+                    color: inherit;
+                    background-color: transparent;
+                    font-size: 1.8rem;
+                    :hover{
+                        color:red;
+                    }
+                }
+                ${Google}{
+                    color: inherit;
+                    background-color: transparent;
+                    :hover{
+                        color:red;
+                    }
+                }
+                ${Twitter}{ 
+                    color: inherit;
+                    background-color: transparent;
+                    :hover{
+                        color:red;
+                    }
+                }
+            }
+        }
+        ${Col2} {
+            ${Heading} {
+            }
+            ${Bullets} {
+                color: rgba(255, 255, 255, 0.6);
+                gap:0.5rem;
+                ${Bullet}{
+                    font-size: 1.1rem;
+                    cursor:pointer;
+                    :hover{
+                        color: #e2ff83;
+                    }
+                }
+            }
+        }
+        ${Pic1} {
+            height: 100%;
+        }
+    }
+    ${Copyright}{
+        background-color: #252525;
+        padding: 1rem 2rem;
+        color:white;
+        grid-template-columns: auto 1fr auto;
+        ${Col1}{
+            opacity:0.5;
+        }
+        ${AngleUp}{
+            opacity:0.5;
+            font-size: 3rem;
+            background-color: #555555;
             padding: 0.3rem;
         }
     }

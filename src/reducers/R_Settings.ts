@@ -9,7 +9,7 @@ type Action = {
     type: act;
     payload?: any;
 };
-export enum act { 
+export enum act {
     'set-state',
 }
 
@@ -17,12 +17,14 @@ export type State = {
     active_div: null | string; // eg - Clicking on empty area should close dropdowns, modals, etc. When null, it says nothing should be open.
     window_is_visible: boolean | null;
     screen: string;
+    scroll_to_top: boolean;
 };
 
 export const initialState: State = {
     active_div: null,
-    window_is_visible: null, 
-    screen : window.innerWidth < 420 ? 'mobile' :'desktop'
+    window_is_visible: null,
+    screen: window.innerWidth < 420 ? 'mobile' : 'desktop',
+    scroll_to_top: false,
 };
 
 export const reducer = (state: State, action: Action) => {
@@ -36,7 +38,6 @@ export const reducer = (state: State, action: Action) => {
         }
     };
     switch (type) {
-         
         case act['set-state']:
             newState = {
                 ...newState,

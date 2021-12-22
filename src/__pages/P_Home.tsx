@@ -23,6 +23,10 @@ const Home = () => {
             <b.home.HowItWorks />
             <b.home.ReadyToInvest />
             <b.home.FromTheFounder />
+            <b.home.Testimonials />
+            <b.home.GetInTouch />
+            <b.home.Footer />
+            <b.home.Copyright />
         </S.Home>
     );
 };
